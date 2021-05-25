@@ -1,9 +1,13 @@
 <template>
   <div class="cards">
-    <ul>
-      <MemoryCards v-for="card in memoryCards" :key="card.id" :card="card"/>
-    </ul>
-    {{ deck }}
+    <div class="cards__memory">
+      <ul class="cards__grid">
+        <MemoryCards v-for="(card, index) in deck" :key="index" :card="card" :index="index"/>
+      </ul>
+    </div>
+    <div class="cards__shuffle">
+      {{ deck }}
+    </div>
   </div>
 </template>
 
@@ -19,17 +23,17 @@ components: {
 
 computed: {
     ...mapGetters('a', {
-      memoryCards: 'getMemoryCards',
+      // memoryCards: 'getMemoryCards',
       deck: 'getDeck',
     })
-  }
+  },
 }
 </script>
 
 <style>
-  .cards {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
+  .cards__grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: auto;
   }
 </style>

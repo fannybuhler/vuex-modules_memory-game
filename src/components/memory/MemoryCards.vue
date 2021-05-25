@@ -1,5 +1,5 @@
 <template>
-  <li class="card">
+  <li class="card" @click="handleClick">
     {{ card.id }}
     {{ card.color }}
     {{ card.isFlipped }}
@@ -10,8 +10,19 @@
 export default {
 name: 'MemoryCards',
 props: {
-    card: Array
+    card: {
+      type: Object,
+      default: () => {}
+    },
+    index: Number
   },
+
+  methods: {
+    handleClick() {
+      console.log(this.index)
+      this.index.card.isFlipped = true
+    }
+  }
 }
 </script>
 
