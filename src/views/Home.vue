@@ -1,27 +1,30 @@
 <template>
   <div class="home">
-    <HelloWorld />
+    <Memory />
     <h2>{{ msg }}</h2>
+    <h2>{{ msg2 }}</h2>
   </div>
 </template>
 
 <script>
 // @ is an alias to /src
-import HelloWorld from "@/components/HelloWorld.vue";
+import Memory from "@/components/memory/Memory.vue";
 import { mapGetters } from 'vuex'
 
 export default {
   name: "Home",
   components: {
-    HelloWorld,
+    Memory,
   },
 
-  ...mapGetters([
-    'a/getMsg' 
-  ]),
+  computed: {
+    ...mapGetters('a', {
+      msg: 'getMsg',
+    }),
 
-  mounted() {
-    console.log(msg)
+    ...mapGetters('b', {
+      msg2: 'getMsg2' 
+    }),
   }
 };
 </script>
